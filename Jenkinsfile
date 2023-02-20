@@ -24,8 +24,7 @@ pipeline{
         }
         stage("deploy the app into the app host"){
             steps{
-                sh " docker stop bhavesh-assignment-999 "
-                sh " docker rm bhavesh-assignment-999 "
+                sh "docker stop bhavesh-assignment-999 || true && docker rm bhavesh-assignment-999  || true"
                 sh "docker pull 251829028725.dkr.ecr.us-east-1.amazonaws.com/bhavesh-assignment-999:${BUILD_NUMBER}"
                 sh "docker run -itd -p 8080:8080 --name bhavesh-assignment-999 251829028725.dkr.ecr.us-east-1.amazonaws.com/bhavesh-assignment-999:${BUILD_NUMBER}"
             }
