@@ -1,11 +1,13 @@
 pipeline{
-    agent any
+    agent {
+        label 'app'
+    }
     options{
         buildDiscarder(logRotator(daysToKeepStr: '2'))
-        retry(1)
+        retry(2)
     }
     parameters{
-        string(name: 'REPO', defaultValue: 'Bhavesh')
+        string(name: 'BRANCH', defaultValue: 'main')
     }
     stages{
         stage('Git Checkout') {
