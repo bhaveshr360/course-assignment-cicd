@@ -1,7 +1,5 @@
 pipeline{
-    agent {
-        label 'app'
-    }
+    agent any
     options{
         buildDiscarder(logRotator(daysToKeepStr: '2'))
         retry(2)
@@ -17,7 +15,8 @@ pipeline{
         }
         stage("Build the docker image and push to repository"){
             steps{
-                sh "docker build -t myapp:latest ."
+                sh "docker build -t bhavesh-assignment-999:${BUILD_NUMBER} ."
+                sh "docker tag bhavesh-assignment-999:latest 251829028725.dkr.ecr.us-east-1.amazonaws.com/bhavesh-assignment-999:${BUILD_NUMBER}"
             }   
         }
         stage("deploy the app into the app host"){
