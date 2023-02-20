@@ -17,6 +17,7 @@ pipeline{
             steps{
                 sh "docker build -t bhavesh-assignment-999:${BUILD_NUMBER} ."
                 sh "docker tag bhavesh-assignment-999:${BUILD_NUMBER} 251829028725.dkr.ecr.us-east-1.amazonaws.com/bhavesh-assignment-999:${BUILD_NUMBER}"
+                sh "docker push 251829028725.dkr.ecr.us-east-1.amazonaws.com/bhavesh-assignment-999:${BUILD_NUMBER}"
             }   
         }
         stage("deploy the app into the app host"){
